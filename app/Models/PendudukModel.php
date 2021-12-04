@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class PendudukModel extends Model
+{
+    protected $table      = 'penduduk';
+    protected $primaryKey = 'id';
+    protected $useTimestamps = true;
+
+    protected $allowedFields = [
+        'first_name',
+        'last_name'
+    ];
+}
