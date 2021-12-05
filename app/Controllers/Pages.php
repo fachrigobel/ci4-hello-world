@@ -16,14 +16,16 @@ class Pages extends BaseController
     public function index()
     {
         $keyword = $this->request->getVar('keyword');
-
+        $currentPage = $this->request->getVar('page_penduduk') ? $this->request->getVar('page_penduduk') : 1;
         if ($keyword) {
             $this->penduduk = $this->penduduk->search($keyword);
         }
 
         $data = [
             'title' => 'Home | Kelola Data Penduduk',
-            'dataPenduduk' => $this->penduduk->findAll()
+            'dataPenduduk'  => $this->penduduk->paginate(10, 'penduduk'),
+            'pager'         => $this->penduduk->pager,
+            'currentPage'   => $currentPage
         ];
         return view('home', $data);
     }

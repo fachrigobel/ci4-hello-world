@@ -30,7 +30,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php $index = 1; ?>
+                <?php $index = 1 + (10 * ($currentPage - 1)); ?>
                 <?php foreach ($dataPenduduk as $penduduk) : ?>
                     <tr>
                         <th scope="row"><?= $index; ?></th>
@@ -42,6 +42,7 @@
                 <?php endforeach ?>
             </tbody>
         </table>
+        <?= $pager->links('penduduk', 'my_pagination'); ?>
     </div>
 </div>
 
