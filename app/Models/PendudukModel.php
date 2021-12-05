@@ -12,6 +12,12 @@ class PendudukModel extends Model
 
     protected $allowedFields = [
         'first_name',
-        'last_name'
+        'last_name',
+        'photo_profile'
     ];
+
+    public function search($keyword)
+    {
+        return $this->table($this->table)->like('first_name', $keyword)->orLike('last_name', $keyword);
+    }
 }

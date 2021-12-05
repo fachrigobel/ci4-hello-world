@@ -15,7 +15,14 @@ class Pages extends BaseController
 
     public function index()
     {
+        $keyword = $this->request->getVar('keyword');
+
+        if ($keyword) {
+            $this->penduduk = $this->penduduk->search($keyword);
+        }
+
         $data = [
+            'title' => 'Home | Kelola Data Penduduk',
             'dataPenduduk' => $this->penduduk->findAll()
         ];
         return view('home', $data);
@@ -23,15 +30,20 @@ class Pages extends BaseController
 
     public function add()
     {
-        return view('add');
+        $data = [
+            'title' => 'Tambah Data | Kelola Data Penduduk'
+        ];
+        return view('add', $data);
     }
 
     public function detail($id)
     {
 
-
+        $penduduk = $this->penduduk->find($id);
+        $nama = $penduduk['first_name'] . ' ' . $penduduk['last_name'];
         $data = [
-            'penduduk' => $this->penduduk->find($id)
+            'title' => "$nama | Kelola Data Penduduk",
+            'penduduk' => $penduduk
         ];
         return view('detail', $data);
     }

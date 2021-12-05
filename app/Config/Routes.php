@@ -35,6 +35,7 @@ $routes->get('/', 'Pages::index');
 $routes->get('/add', 'Pages::add');
 $routes->get('/detail/(:num)', 'Pages::detail/$1');
 
+$routes->post('/', 'Pages::index');
 $routes->post('/add', 'Data::add');
 
 $routes->delete('/delete', 'Data::delete');
