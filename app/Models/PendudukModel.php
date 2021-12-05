@@ -18,6 +18,6 @@ class PendudukModel extends Model
 
     public function search($keyword)
     {
-        return $this->table($this->table)->like('first_name', $keyword)->orLike('last_name', $keyword);
+        return $this->table($this->table)->like('CONCAT(first_name,last_name)', str_replace(' ', '', $keyword));
     }
 }
