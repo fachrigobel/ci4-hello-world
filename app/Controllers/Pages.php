@@ -15,17 +15,26 @@ class Pages extends BaseController
 
     public function index()
     {
+        $jumlahPenduduk = count($this->penduduk->findAll());
+        $pendudukPria = $this->penduduk->where('gender', 'male')->findAll();
+        $pendudukWanita = $this->penduduk->where('gender', 'female')->findAll();
+
         $keyword = $this->request->getVar('keyword');
         $currentPage = $this->request->getVar('page_penduduk') ? $this->request->getVar('page_penduduk') : 1;
         if ($keyword) {
             $this->penduduk = $this->penduduk->search($keyword);
         }
 
+
+
         $data = [
             'title' => 'Home | Kelola Data Penduduk',
-            'dataPenduduk'  => $this->penduduk->paginate(10, 'penduduk'),
-            'pager'         => $this->penduduk->pager,
-            'currentPage'   => $currentPage
+            'dataPenduduk'      => $this->penduduk->paginate(5, 'penduduk'),
+            'pager'             => $this->penduduk->pager,
+            'currentPage'       => $currentPage,
+            'jumlahPenduduk'    => $jumlahPenduduk,
+            'pendudukPria'      => count($pendudukPria),
+            'pendudukWanita'    => count($pendudukWanita)
         ];
         return view('home', $data);
     }

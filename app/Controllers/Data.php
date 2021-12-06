@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\PendudukModel;
+use CodeIgniter\HTTP\Request;
 
 class Data extends BaseController
 {
@@ -23,9 +24,10 @@ class Data extends BaseController
             $profileName = 'default.png';
         }
         $data = [
-            'first_name' => $this->request->getVar('first-name'),
-            'last_name' => $this->request->getVar('last-name'),
-            'photo_profile' => $profileName
+            'first_name'        => $this->request->getVar('first-name'),
+            'last_name'         => $this->request->getVar('last-name'),
+            'gender'            => $this->request->getVar('gender'),
+            'photo_profile'     => $profileName
         ];
 
         $this->penduduk->save($data);
@@ -51,7 +53,8 @@ class Data extends BaseController
         $id = $this->request->getVar('id');
         $data = [
             'first_name' => $this->request->getVar('first-name'),
-            'last_name' => $this->request->getVar('last-name')
+            'last_name' => $this->request->getVar('last-name'),
+            'gender' => $this->request->getVar('gender')
         ];
 
         $this->penduduk->update($id, $data);

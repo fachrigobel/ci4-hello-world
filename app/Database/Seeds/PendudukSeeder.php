@@ -16,6 +16,7 @@ class PendudukSeeder extends Seeder
                 'first_name'    => $faker->firstName(),
                 'last_name'     => $faker->lastName(),
                 'photo_profile' => 'default.png',
+                'gender'        => $faker->randomElement(['male', 'female']),
                 'created_at'    => Time::createFromTimestamp($faker->unixTime()),
                 'updated_at'    => Time::createFromTimestamp($faker->unixTime()),
             ];

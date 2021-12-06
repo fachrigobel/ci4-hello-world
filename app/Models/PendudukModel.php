@@ -13,6 +13,7 @@ class PendudukModel extends Model
     protected $allowedFields = [
         'first_name',
         'last_name',
+        'gender',
         'photo_profile'
     ];
 
